@@ -4,8 +4,11 @@ on:
   push:
     branches:
     - "*"
+  watch:
+    types: [started]
   workflow_dispatch:
 
+    
 jobs:
   build:
     runs-on: ubuntu-22.04
