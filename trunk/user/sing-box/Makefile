@@ -1,11 +1,11 @@
 include $(ROOTDIR)/rules.mk
 
 PKG_NAME:=sing-box
-PKG_VERSION:=1.5.3
+PKG_VERSION:=1.8.14
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/SagerNet/sing-box/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=e050f8a588d92547ba277fc8980af8ede544c345684c20e4b008fbc1b1371fb8
+PKG_HASH:=2ba7cfa097f5963ba304d47606e7a6b61bf881eb86cbed78fa6e4efae44a0a5f
 
 include $(INCLUDE_DIR)/package.mk
 
