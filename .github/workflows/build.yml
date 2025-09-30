@@ -45,7 +45,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.toolchain }}
+          name: ${{ matrix.target }}-${{ matrix.toolchain }}
           path: trunk/images/*.trx
           
   publish:
@@ -56,7 +56,10 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
+        with:
+          pattern: '*-mipsel-linux-musl'
+          merge-multiple: true
       
       - name: Set Tag Name
         run: echo "TAG_NAME=$(date +%Y%m%d)" >> $GITHUB_ENV
@@ -72,5 +75,5 @@ jobs:
         with:
           commit: ${{ github.sha }}
           tag: ${{ env.TAG_NAME }}
-          artifacts: "mipsel-linux-musl/*.trx"
+          artifacts: "*.trx"
           allowUpdates: true
