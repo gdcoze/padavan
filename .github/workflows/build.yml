@@ -13,14 +13,17 @@ toolchain: [mipsel-linux-musl]
 steps:
 - uses: actions/checkout@v3
 - uses: hendrikmuhs/ccache-action@v1.2
+# 修正了 'with' 的缩进
 with:
 key: matrix.target−{{ matrix.toolchain }}
 - uses: actions/setup-go@v4
+# 修正了 'with' 的缩进
 with:
 go-version: '1.20'
 check-latest: true
 cache: false
 - uses: actions/setup-node@v3
+# 修正了 'with' 的缩进
 with:
 node-version: 18
 check-latest: true
@@ -38,7 +41,7 @@ mv $image $(echo $image | sed 's/K2P/K2P-NANO/')
 fi
 - uses: actions/upload-artifact@v4
 with:
-# FIXED: Appending matrix.target to create a unique artifact name per matrix run.
+# 使用唯一的 Artifact 名称避免 409 Conflict 错误
 name: matrix.target−{{ matrix.toolchain }}
 path: trunk/images/.trx
 
@@ -54,6 +57,6 @@ force_push_tag: true
 with:
 commit: ${{ github.sha }}
 tag: ${{ env.TAG_ANME }}
-# FIXED: Use a wildcard to capture all .trx files from all downloaded artifact directories.
+# 使用通配符匹配所有下载的 .trx 文件
 artifacts: "-mipsel-linux-musl/.trx"
 allowUpdates: true
